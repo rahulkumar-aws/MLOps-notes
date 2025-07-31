@@ -50,7 +50,69 @@ with mlflow.start_run():
 
 ---
 
+## 🎯 **Deploy Model Pattern: Serve via Model Registry**
 
+---
+
+### 🟢 **Deploy Model Pattern: Serve via Model Registry**
+
+#### ✅ Key Characteristics:
+
+* **Model is pre-trained** and versioned in **MLflow Model Registry**
+* Scoring/inference is **decoupled** from training logic
+* Ideal for **batch inference**, **real-time APIs**, and **production stability**
+* Enables **model promotion (Staging → Production)** without re-running training
+* Often used with **Databricks Workflows**, **Jobs**, or **Model Serving endpoints**
+
+---
+
+#### 🧠 What Happens:
+
+1. Model is already registered as:
+
+   ```
+   models:/my_model/Production
+   ```
+2. Scoring code **loads model from registry**, applies to new data
+3. Entire scoring logic is **modular and reusable**
+4. Can be part of a **Databricks Job**, **Asset Bundle**, or **Serving Endpoint**
+
+---
+
+#### 🧪 Sample Scoring Code (in scoring job):
+
+```python
+import mlflow
+import pandas as pd
+
+# Load model from registry (production stage)
+model = mlflow.pyfunc.load_model("models:/my_model/Production")
+
+# Load new data
+df = pd.read_csv("new_customers.csv")
+
+# Predict using loaded model
+df["prediction"] = model.predict(df)
+
+# Optionally log results
+with mlflow.start_run():
+    mlflow.log_metric("scored_rows", len(df))
+```
+
+---
+
+#### 📦 Optional Bundle Structure (Scoring Only):
+
+```
+ml-bundle/
+├── notebooks/
+│   └── score_model.py
+├── resources/
+│   └── job_score.yml
+├── databricks.yml
+```
+
+---
 
 * 📊 **Dataset**: `customer_data.csv` (binary classification)
 * ⚙️ **Model**: `RandomForestClassifier`
