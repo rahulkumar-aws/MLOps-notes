@@ -26,3 +26,8 @@ This document provides a side-by-side comparison of how core MLOps tasks are han
 
 Without MLflow, you're relying on manual, ad-hoc, and non-reproducible approaches.  
 With MLflow, you gain a structured, traceable, and automatable MLOps workflow — especially powerful when integrated into the Databricks ecosystem.
+“Here’s the reality. You can do MLOps without MLflow —
+but it’s mostly manual, fragile, and unscalable.”
+
+“MLflow provides a consistent layer across tracking, versioning, deployment, and monitoring —
+and it works inside Databricks, on AWS, Azure, or even your laptop.”
