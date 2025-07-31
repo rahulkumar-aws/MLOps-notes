@@ -1,58 +1,85 @@
-## 🧠 Databricks-Endorsed MLflow Deployment Patterns
 
-According to **Databricks documentation**:
 
-### 1. **Deploy Code Pattern** *(Recommended)*
-
-* The training code is **deployed through all environments**: dev → staging → production.
-* In production, the **model is retrained**, ensuring it’s validated on production data with the same reviewed code.
-* Especially suited for environments where model behavior must adapt to new data regularly and code needs repeated testing.
-* ✅ Advantages: reproducible, safe retraining, integrated pipelines
-* 🔄 Disadvantages: retraining costs, steep learning curve in production environments ([Databricks Docs][1], [Stack Overflow][2])
-
-### 2. **Deploy Model Pattern**
-
-* Code is deployed once, while the **model artifact is promoted** from staging to production.
-* Good for scenarios where training is expensive, infrequent, or done centrally.
-* Better for environments where model artifacts are reused or wrapped in serving infrastructure.
-* ✅ Advantages: simpler handoff, faster deployment
-* 🔄 Disadvantages: complex retraining pipeline, requires careful artifact management ([Databricks Docs][1], [Microsoft Learn][3])
+* 📊 **Dataset**: `customer_data.csv` (binary classification)
+* ⚙️ **Model**: `RandomForestClassifier`
+* 🔁 **MLflow** for tracking
+* ✅ Registered model name: `customer_churn_model`
 
 ---
 
-## 🔁 Side‑by‑Side Comparison
-
-| **Aspect**                | **Deploy Code Pattern**                             | **Deploy Model Pattern**                           |
-| ------------------------- | --------------------------------------------------- | -------------------------------------------------- |
-| **Purpose**               | Train model each environment                        | Register and promote model artifact                |
-| **Training Frequency**    | Frequent retraining in production                   | Artifact reused, no retraining needed              |
-| **Code & Model Coupling** | Code packages model                                 | Code and model evolve independently                |
-| **Cost (Compute)**        | Higher—training costs across environments           | Lower—single training run                          |
-| **Model Ownership**       | Trained by reviewed, tested code in each env        | Developed centrally, promoted                      |
-| **CI/CD Fit**             | Strong—code moves through GitOps pipelines          | Strong—artifact promotion triggers serving or jobs |
-| **Best For…**             | Organizations with secure access to production data | Centralized model generation, real-time inference  |
-
----
-
-## 🧪 Code Example (Plain MLflow, Not Bundles)
-
-### ✅ Deploy Code Pattern (`train_and_log.py`)
+### 🔷 Pattern 1: **Deploy Code Pattern**
 
 ```python
+# train_model_deploy_code.py
+
 import mlflow
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
-with mlflow.start_run():
-    model = RandomForestClassifier()
-    model.fit(X_train, y_train)
-    mlflow.sklearn.log_model(model, "model", registered_model_name="rf_model_prod")
+# Load dataset
+df = pd.read_csv("customer_data.csv")
+X = df.drop(columns=["label"])
+y = df["label"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+
+# MLflow training and logging
+with mlflow.start_run(run_name="code_pattern_training"):
+    clf = RandomForestClassifier(n_estimators=100)
+    clf.fit(X_train, y_train)
+    
+    mlflow.log_metric("accuracy", clf.score(X_test, y_test))
+    mlflow.sklearn.log_model(
+        sk_model=clf,
+        artifact_path="model",
+        registered_model_name="customer_churn_model"
+    )
 ```
 
-### 🔁 Deploy Model Pattern (`score.py`)
+🧠 **Key idea**:
+
+* Code trains the model and logs it **at the same time**
+* This job is used for **training, logging, and versioning**
+
+---
+
+### 🔷 Pattern 2: **Deploy Model Pattern**
 
 ```python
+# score_model_deploy_model.py
+
 import mlflow
-model = mlflow.pyfunc.load_model("models:/rf_model_prod/Production")
-preds = model.predict(X_new)
+import pandas as pd
+
+# Load new data for scoring
+df = pd.read_csv("customer_data_scoring.csv")
+
+# Load model from MLflow Registry
+model = mlflow.pyfunc.load_model("models:/customer_churn_model/Production")
+
+# Generate predictions
+df["prediction"] = model.predict(df)
+
+# Log results (optional)
+with mlflow.start_run(run_name="model_pattern_scoring"):
+    mlflow.log_metric("scored_rows", len(df))
 ```
+
+🧠 **Key idea**:
+
+* Model is **pre-trained** and promoted to production
+* This job **does not train** — it just runs inference using model URI
+
+---
+
+## 🧪 Same Example — Different Lifecycle Paths
+
+| Lifecycle Stage      | Deploy Code Pattern                  | Deploy Model Pattern                        |
+| -------------------- | ------------------------------------ | ------------------------------------------- |
+| Model Training       | ✅ Happens every run                  | ❌ No training                               |
+| Model Registry       | ✅ Logs & optionally registers        | ✅ Assumes model already registered          |
+| Inference Separation | ❌ Mixed with training                | ✅ Clearly separated                         |
+| Deployment Trigger   | Code changes retrains model          | Model promotion triggers deployment         |
+| Best Used In         | Dev/experimentation, retraining jobs | Prod batch scoring, APIs, serving workloads |
 
