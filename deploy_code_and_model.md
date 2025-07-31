@@ -1,5 +1,57 @@
 
 
+### 🔷 **Deploy Code Pattern: Jobs + MLflow + Assets Bundle**
+
+#### ✅ Key Characteristics:
+
+* Model is **trained and logged inside the same Databricks Job**
+* Code, model, and environment are **tightly coupled**
+* Best for **experimentation**, frequent retraining, and **versioned bundles**
+* Uses **MLflow** to track metrics, parameters, and artifacts
+* **Databricks Assets Bundle** defines the full job structure and reproducibility
+
+---
+
+#### 📦 Bundle Structure Example:
+
+```
+ml-bundle/
+├── notebooks/
+│   └── train_model.py
+├── resources/
+│   └── job_train.yml
+├── databricks.yml
+```
+
+---
+
+#### 🧠 What Happens:
+
+1. You run `train_model.py` via job defined in `job_train.yml`
+2. Code trains and logs model using `mlflow.log_model(...)`
+3. Model may be registered to **MLflow Registry**
+4. Bundle allows CI/CD or manual deployment using:
+
+   ```bash
+   databricks bundle deploy --target dev
+   databricks bundle run train_model_job
+   ```
+
+---
+
+#### 🧪 Sample Code (inside job):
+
+```python
+with mlflow.start_run():
+    model = RandomForestClassifier()
+    model.fit(X, y)
+    mlflow.sklearn.log_model(model, "model", registered_model_name="my_model")
+```
+
+---
+
+
+
 * 📊 **Dataset**: `customer_data.csv` (binary classification)
 * ⚙️ **Model**: `RandomForestClassifier`
 * 🔁 **MLflow** for tracking
