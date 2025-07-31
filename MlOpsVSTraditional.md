@@ -31,3 +31,38 @@ but it’s mostly manual, fragile, and unscalable.”
 
 “MLflow provides a consistent layer across tracking, versioning, deployment, and monitoring —
 and it works inside Databricks, on AWS, Azure, or even your laptop.”
+
+
+# MLflow Functional Overview
+
+This table provides a categorized list of **MLflow core functions**, showing the purpose and commonly used APIs in each area.
+
+| **Category**              | **Functionality**                            | **MLflow APIs / Functions**                                                                 |
+|---------------------------|-----------------------------------------------|----------------------------------------------------------------------------------------------|
+| **Tracking**              | Log and visualize experiments                 | `mlflow.start_run()`, `mlflow.log_param()`, `mlflow.log_metric()`, `mlflow.log_artifact()`   |
+|                           | Nested runs and run info                     | `mlflow.set_tag()`, `mlflow.get_run()`, `mlflow.end_run()`                                   |
+|                           | Search/filter experiment runs                | `mlflow.search_runs()`                                                                       |
+| **Projects**              | Package ML code for reproducibility           | `MLproject` file, `mlflow run <URI>`                                                         |
+|                           | Define Conda or Docker environments           | `conda.yaml`, `docker_env` in MLproject                                                      |
+| **Models**                | Log trained models                            | `mlflow.log_model()`, `mlflow.sklearn.log_model()`, `mlflow.keras.log_model()`               |
+|                           | Load models for inference                     | `mlflow.pyfunc.load_model()`, `mlflow.sklearn.load_model()`                                  |
+|                           | Serve models locally                          | `mlflow models serve -m <model_uri>`                                                         |
+|                           | Evaluate models                               | `mlflow.evaluate()`                                                                          |
+| **Model Registry**        | Register model                                | `mlflow.register_model()`, UI registry                                                       |
+|                           | List and transition stages                    | `mlflow.get_registered_model()`, `mlflow.transition_model_version_stage()`                   |
+|                           | Add metadata to model versions                | `mlflow.set_model_version_tag()`, `mlflow.delete_registered_model()`                         |
+| **Deployment**            | Deploy model to REST endpoint (Databricks)    | Databricks Model Serving + Mosaic AI                                                         |
+|                           | Deploy to other platforms                     | `mlflow.azureml`, `mlflow.sagemaker`, `mlflow.docker`, `mlflow.kubernetes`                   |
+| **Evaluation & Validation**| Built-in model evaluation metrics             | `mlflow.evaluate()` with default or custom metrics                                            |
+| **Pyfunc Interface**      | Create custom wrapper around any model        | `mlflow.pyfunc.PythonModel`, `load_context()`, `predict()`                                   |
+| **Environment Logging**   | Save dependencies for reproducibility         | Auto logs `conda.yaml`, `requirements.txt`                                                   |
+| **Artifacts**             | Log plots, images, files                      | `mlflow.log_artifact()`, `mlflow.log_artifacts()`                                            |
+| **Utilities**             | Set experiment or run-level context           | `mlflow.set_experiment()`, `mlflow.set_tracking_uri()`                                       |
+
+---
+
+## Notes:
+- **Tracking**: Works across any Python environment, local or cloud
+- **Registry**: Enables model stage transitions and CI/CD integrations
+- **Pyfunc**: Universal abstraction that allows serving any model like a function
+- **Deployment**: Plug-and-play with Databricks, AWS, Azure, Kubernetes, and more
