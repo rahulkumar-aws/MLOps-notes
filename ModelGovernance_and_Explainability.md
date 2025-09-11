@@ -204,35 +204,83 @@ Together, they form the foundation of trustworthy, compliant AI systems.
 ---
 
 ## Case Study: Credit Risk Model
-- Governance: versioning and approvals  
-- Explainability: SHAP values for loan decisions  
-- Fairness: demographic checks  
 
-Credit models in finance must be strictly governed, explainable to regulators and customers, and monitored for fairness.
+**Problem:**  
+A bank needs to automate loan approvals. Regulators demand transparency, while customers expect fair and unbiased decisions.  
 
-👉 Databricks Helps: Combines model registry, SHAP logging, and fairness metrics.
+**Governance:**  
+- All model versions must be registered and approved before deployment.  
+- Full audit trail required for compliance audits.  
+
+**Explainability:**  
+- SHAP values explain why each applicant is approved or denied.  
+- Feature importance shows income, credit history, and debt ratio as top drivers.  
+
+**Fairness:**  
+- Bias testing ensures no group is systematically disadvantaged.  
+- Equal opportunity and disparate impact metrics are monitored continuously.  
+
+**Databricks Helps:**  
+- [Model Registry](https://docs.databricks.com/en/mlflow/model-registry.html) tracks versions and approvals.  
+- [SHAP explainability](https://www.databricks.com/blog/scaling-shap-calculations-with-pyspark-and-pandas-udf) integrated into MLflow for explanations.  
+- [Fairlearn](https://fairlearn.org/) runs in Databricks to test fairness.  
+
+**Outcome:**  
+Regulators receive clear audit reports, customers see transparent reasons for decisions, and the bank reduces compliance risk.  
 
 ---
 
-## Case Study: Healthcare Diagnosis
-- Governance: compliance approvals  
-- Explainability: PDP plots for clinicians  
-- Fairness: subgroup validation  
+## Case Study: Healthcare Diagnosis Model
 
-Healthcare requires trust. Doctors need transparent predictions and patients need fairness in outcomes.
+**Problem:**  
+A hospital wants to deploy an AI model to support early disease diagnosis. Doctors need interpretable insights, and patients must be treated fairly.  
 
-👉 Databricks Helps: Provides secure lineage, reproducible workflows, and compliance-ready audit logs.
+**Governance:**  
+- Strict approval workflows with compliance officers.  
+- Version tracking to ensure reproducibility in medical audits.  
+
+**Explainability:**  
+- PDP plots show how lab values affect predicted risk.  
+- ICE plots reveal how predictions differ across individual patients.  
+
+**Fairness:**  
+- Validation across demographic subgroups (age, gender, ethnicity).  
+- Bias detection ensures no patient group is underdiagnosed.  
+
+**Databricks Helps:**  
+- [Unity Catalog](https://docs.databricks.com/en/data-governance/unity-catalog/index.html) secures lineage and access.  
+- [MLflow artifacts](https://docs.databricks.com/en/mlflow/index.html) store explanation outputs for audits.  
+- [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) supports fairness and explainability.  
+
+**Outcome:**  
+Doctors trust AI support because predictions are transparent, and audits confirm compliance with healthcare regulations.  
 
 ---
 
-## Case Study: Marketing Churn
-- Governance: controlled deployments  
-- Explainability: ICE plots for churn reasons  
-- Fairness: prevent biased targeting  
+## Case Study: Marketing Churn Model
 
-Churn models drive campaigns. Without fairness checks, marketing could unfairly target groups.
+**Problem:**  
+A telecom provider needs to predict customer churn. Business users want actionable insights, while ensuring campaigns don’t unfairly target groups.  
 
-👉 Databricks Helps: Spark + MLflow allow explainability at scale for millions of predictions.
+**Governance:**  
+- Controlled deployments with rollbacks.  
+- Regular monitoring to detect data drift.  
+
+**Explainability:**  
+- ICE plots explain churn risk for individual customers.  
+- LIME shows which features (contract length, billing frequency) drive predictions.  
+
+**Fairness:**  
+- Demographic parity ensures campaigns don’t exclude or over-target any group.  
+- Post-processing adjustments applied if unfair bias is detected.  
+
+**Databricks Helps:**  
+- [Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html) enable reproducible deployments.  
+- [MLflow](https://docs.databricks.com/en/mlflow/index.html) logs churn explanations (LIME, ICE).  
+- [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html) detects drift.  
+
+**Outcome:**  
+Business teams gain confidence in churn predictions, customers see fairer campaigns, and the company increases retention without reputational risk.  
 
 ---
 
