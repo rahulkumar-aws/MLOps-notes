@@ -135,14 +135,20 @@ Explainability ensures AI is not a black box. It allows users, regulators, and d
 ---
 
 ## Explainability Techniques
-- [SHAP (SHapley Additive exPlanations)](https://shap.readthedocs.io/en/latest/) — feature contribution values per prediction.  
-- [LIME (Local Interpretable Model-agnostic Explanations)](https://github.com/marcotcr/lime) — local surrogate models.  
-- [PDP (Partial Dependence Plot)](https://christophm.github.io/interpretable-ml-book/pdp.html) — average feature effect plots.  
-- [ICE (Individual Conditional Expectation)](https://christophm.github.io/interpretable-ml-book/ice.html) — feature effect for individuals.  
 
-These tools help visualize model behavior at global and local levels.
+- [**SHAP (SHapley Additive exPlanations)**](https://shap.readthedocs.io/en/latest/) — assigns contribution scores per feature to explain predictions.  
+  *Notes:* Based on game theory. Explains both global and individual predictions. Example: In a loan model, income may contribute +0.3 while debt contributes -0.2 to approval probability.  
 
-👉 Databricks Helps: [Scaling SHAP with PySpark](https://www.databricks.com/blog/scaling-shap-calculations-with-pyspark-and-pandas-udf) demonstrates explainability at enterprise scale.
+- [**LIME (Local Interpretable Model-agnostic Explanations)**](https://github.com/marcotcr/lime) — builds local surrogate models.  
+  *Notes:* Perturbs input features to explain one prediction at a time. Example: In a churn model, shows that contract length and monthly charges explain most of the churn risk.  
+
+- [**PDP (Partial Dependence Plot)**](https://christophm.github.io/interpretable-ml-book/pdp.html) — shows average feature effects.  
+  *Notes:* Explains overall feature influence. Example: House price increases steadily with more rooms until it plateaus.  
+
+- [**ICE (Individual Conditional Expectation)**](https://christophm.github.io/interpretable-ml-book/ice.html) — shows feature effects for individuals.  
+  *Notes:* Goes beyond averages. Example: For some patients, age increases risk sharply; for others, only slightly. Useful for subgroup analysis and bias detection.  
+
+👉 Databricks Helps: [Scaling SHAP with PySpark](https://www.databricks.com/blog/scaling-shap-calculations-with-pyspark-and-pandas-udf) shows enterprise-scale explainability.
 
 ---
 
@@ -150,17 +156,17 @@ These tools help visualize model behavior at global and local levels.
 - Counterfactuals (“What if income was higher?”)  
 - Prototypes (find similar historical cases)  
 
-These ground predictions in understandable examples for users.
+These provide intuitive examples to explain predictions. Counterfactuals simulate alternative scenarios, while prototypes show similar examples from the training set.
 
-👉 Databricks Helps: Supports [Alibi Explain](https://docs.seldon.io/projects/alibi/en/stable/) with results logged into MLflow.
+👉 Databricks Helps: Supports [Alibi Explain](https://docs.seldon.io/projects/alibi/en/stable/) with outputs stored in MLflow.
 
 ---
 
 ## Fairness & Bias
 - Bias sources: sampling, proxy, label bias  
-- Metrics: Demographic Parity, Equal Opportunity, Disparate Impact  
+- Fairness metrics: Demographic Parity, Equal Opportunity, Disparate Impact  
 
-Bias can appear in data, labels, or features. Fairness metrics help detect disparities between groups.
+Bias can appear in data, features, or labels. Fairness metrics quantify disparities to identify risks.
 
 👉 Databricks Helps: Integrates [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://aif360.mybluemix.net/).
 
@@ -191,7 +197,9 @@ Bias can be mitigated at multiple points in the lifecycle.
 - Explainability = transparency  
 - Combined = Responsible AI  
 
-👉 Databricks Helps: Unified dashboards combine model metrics, fairness reports, drift, and SHAP/LIME plots.
+Together, they form the foundation of trustworthy, compliant AI systems.
+
+👉 Databricks Helps: Unified dashboards combine performance metrics, fairness reports, drift, and SHAP/LIME plots.
 
 ---
 
@@ -200,7 +208,9 @@ Bias can be mitigated at multiple points in the lifecycle.
 - Explainability: SHAP values for loan decisions  
 - Fairness: demographic checks  
 
-👉 Databricks Helps: End-to-end governance with registry, SHAP logging, and fairness metrics.
+Credit models in finance must be strictly governed, explainable to regulators and customers, and monitored for fairness.
+
+👉 Databricks Helps: Combines model registry, SHAP logging, and fairness metrics.
 
 ---
 
@@ -208,6 +218,8 @@ Bias can be mitigated at multiple points in the lifecycle.
 - Governance: compliance approvals  
 - Explainability: PDP plots for clinicians  
 - Fairness: subgroup validation  
+
+Healthcare requires trust. Doctors need transparent predictions and patients need fairness in outcomes.
 
 👉 Databricks Helps: Provides secure lineage, reproducible workflows, and compliance-ready audit logs.
 
@@ -218,7 +230,9 @@ Bias can be mitigated at multiple points in the lifecycle.
 - Explainability: ICE plots for churn reasons  
 - Fairness: prevent biased targeting  
 
-👉 Databricks Helps: Spark + MLflow scale explainability to millions of predictions.
+Churn models drive campaigns. Without fairness checks, marketing could unfairly target groups.
+
+👉 Databricks Helps: Spark + MLflow allow explainability at scale for millions of predictions.
 
 ---
 
@@ -236,6 +250,8 @@ Bias can be mitigated at multiple points in the lifecycle.
 - Automated compliance dashboards  
 - Integrated Responsible AI frameworks  
 - Plannable, predictable AI  
+
+The future of AI is about trust and predictability. Compliance will be automated, fairness checks built-in, and governance fully integrated.
 
 👉 Databricks Helps: Roadmap deepens integration of explainability and fairness into Unity Catalog & Monitoring.
 
@@ -266,4 +282,4 @@ Bias can be mitigated at multiple points in the lifecycle.
 - GDPR – General Data Protection Regulation  
 - EU AI Act – European Union Artificial Intelligence Act  
 
-👉 Databricks Helps: Aligns governance with MAS, GDPR, and EU AI Act compliance.
+👉 Databricks Helps: Aligns governance with MAS, GDPR, and EU AI Act compliance requirements.
