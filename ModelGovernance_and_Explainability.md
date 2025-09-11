@@ -1,28 +1,22 @@
----
-marp: true
-theme: default
-paginate: true
----
-
 # Model Governance & Explainability
 ### Ensuring Trust, Compliance, and Responsible AI with Databricks
 
-Notes:  
-This session covers governance of machine learning models, explainability, fairness, and how Databricks enables Responsible AI.
+AI adoption requires more than building accurate models.  
+Organizations need governance frameworks, explainability techniques, and fairness safeguards to ensure that models are reliable, compliant, and trusted. Databricks provides the platform to make this possible.
 
-👉 Databricks Helps: Unified Lakehouse platform that combines governance, versioning, explainability, and monitoring.
+👉 Databricks Helps: Unified Lakehouse platform combining governance, versioning, explainability, and monitoring.
 
 ---
 
 ## Why Governance & Explainability Matter
-- Trust, compliance, and risk reduction  
-- Regulations: GDPR (General Data Protection Regulation), EU AI Act (European Union Artificial Intelligence Act), MAS (Monetary Authority of Singapore)  
-- Ethical and responsible use of AI  
+- Business trust  
+- Regulatory compliance  
+- Operational risk reduction  
+- Ethical and responsible AI  
 
-Notes:  
-Without governance and explainability, organizations risk deploying black-box systems that erode customer trust and violate regulations.
+Model governance ensures that models can be trusted in business-critical settings. Explainability helps organizations understand why models behave a certain way, which is necessary for user adoption and regulatory compliance. Together, they reduce risks and enable ethical AI use.
 
-👉 Databricks Helps: Provides governance-ready data, model lineage, and compliance tooling through Unity Catalog and MLflow (Machine Learning flow).
+👉 Databricks Helps: Unity Catalog and MLflow (Machine Learning flow) deliver governance-ready data, model lineage, and compliance tooling.
 
 ---
 
@@ -36,22 +30,20 @@ Without governance and explainability, organizations risk deploying black-box sy
 7. Case Studies & Conclusion  
 8. Glossary  
 
-Notes:  
-We’ll start with governance foundations, then explainability, fairness, and how Databricks ties it all together.
+This session begins with governance foundations, moves into explainability and fairness, and then shows how Databricks enables these practices in real-world workflows.
 
-👉 Databricks Helps: All agenda items map directly to Databricks features.
+👉 Databricks Helps: Each agenda topic maps directly to Databricks features.
 
 ---
 
 ## What is Model Governance?
-- Framework for managing models throughout lifecycle  
-- Covers policies, controls, and accountability  
-- Ensures compliance, security, and trust  
+- Lifecycle management  
+- Policies and accountability  
+- Compliance and security  
 
-Notes:  
-Governance is the control tower for all models in production.
+Model governance is the set of processes that control how models are created, validated, deployed, and monitored. It ensures that models follow organizational policies, meet regulatory requirements, and can be audited if needed.
 
-👉 Databricks Helps: MLflow Model Registry + Unity Catalog provide governance across the full model lifecycle.
+👉 Databricks Helps: MLflow Model Registry + Unity Catalog provide governance throughout the lifecycle.
 
 ---
 
@@ -59,96 +51,88 @@ Governance is the control tower for all models in production.
 1. Model registration  
 2. Validation and approval  
 3. Deployment and monitoring  
-4. Retirement or archival  
+4. Retirement  
 
-Notes:  
-Each stage requires controls and documentation — Databricks helps automate these.
+Models move through a lifecycle similar to software. Registration records the model, validation ensures accuracy and fairness, deployment enables use, and retirement removes outdated models. Governance ensures no step is skipped.
 
-👉 Databricks Helps: Asset Bundles orchestrate consistent deployments; Lakehouse Monitoring supports runtime monitoring.
+👉 Databricks Helps: Asset Bundles ensure consistent deployments, while Lakehouse Monitoring provides alerts when models drift or degrade.
 
 ---
 
 ## Model Version Management
-- Track code, data, and model versions  
-- Stage transitions: Staging → Production → Archived  
-- Approval gates and rollback options  
+- Tracking versions  
+- Stage transitions  
+- Rollbacks  
 
-Notes:  
-Ensures exact model reproducibility across environments.
+Version management ensures teams know which model is in production, which is in staging, and which has been retired. Every version is linked to its data and code, so outcomes are reproducible and accountable.
 
-👉 Databricks Helps: MLflow Model Registry ensures version control with approvals and rollback.
+👉 Databricks Helps: MLflow Model Registry offers versioning, approvals, and rollback workflows.
 
 ---
 
 ## Roles & Responsibilities
-- Data Scientist → trains model  
-- Model Validator → tests fairness, robustness  
-- Compliance Officer → checks policies  
-- Model Owner → accountable for production  
+- Data Scientist  
+- Model Validator  
+- Compliance Officer  
+- Model Owner  
 
-Notes:  
-Clear roles ensure governance success.
+Governance requires clarity in responsibilities. Data scientists build models, validators test them, compliance officers check policies, and owners remain accountable. This prevents confusion and ensures accountability across teams.
 
-👉 Databricks Helps: Unity Catalog role-based access controls enforce accountability.
+👉 Databricks Helps: Unity Catalog enforces role-based access controls (RBAC).
 
 ---
 
 ## Auditability with Unity Catalog
-- Track lineage: data → feature store → model → deployment  
+- End-to-end lineage  
 - Fine-grained access control  
-- Integrated governance across data and models  
+- Integrated governance  
 
-Notes:  
-Unity Catalog is the backbone ensuring full audit trail and regulatory compliance.
+Auditability means being able to trace a model’s decisions back to the data and features used. Unity Catalog automatically records this lineage, while enforcing access controls across all assets.
 
-👉 Databricks Helps: Provides lineage graphs and detailed governance.
+👉 Databricks Helps: Provides lineage graphs, audit trails, and detailed access logs.
 
 ---
 
 ## Operational Governance
-- Deployment approvals  
-- Monitoring: drift, anomalies, performance degradation  
-- Retirement of outdated models  
+- Approval gates  
+- Monitoring and drift detection  
+- Sunset policies  
 
-Notes:  
-Governance extends beyond deployment to continuous monitoring.
+Governance doesn’t stop after deployment. Models must be continuously monitored for accuracy, fairness, and drift. Retirement policies ensure outdated or biased models are removed before they cause harm.
 
-👉 Databricks Helps: Lakehouse Monitoring tracks drift, anomalies, and triggers retraining.
+👉 Databricks Helps: Lakehouse Monitoring tracks metrics and system tables record monitoring events.
 
 ---
 
 ## Plannable AI
-- AI that is predictable, reliable, and auditable  
-- Governance ensures business impact is forecastable  
-- Links AI to enterprise planning  
+- Predictable  
+- Reliable  
+- Aligned with business  
 
-Notes:  
-Plannable AI moves organizations away from ad-hoc approaches.
+Plannable AI is AI that can be forecasted, controlled, and trusted. With governance and monitoring in place, organizations can move away from ad-hoc deployments and toward predictable, repeatable, and auditable AI systems.
 
-👉 Databricks Helps: Databricks Asset Bundles ensure reproducibility across environments.
+👉 Databricks Helps: Databricks Asset Bundles make deployments reproducible across environments, supporting Plannable AI.
 
 ---
 
 ## Why Explainability?
-- Builds trust with users  
-- Regulatory compliance (Right to Explanation)  
-- Helps debug and improve models  
+- Trust  
+- Regulation  
+- Debugging  
 
-Notes:  
-Explainability ensures transparency and user confidence.
+Explainability builds trust with end users, meets regulatory obligations like GDPR’s “Right to Explanation,” and helps technical teams debug and improve models. Without it, AI remains a black box that is hard to trust or scale.
 
-👉 Databricks Helps: Responsible AI toolkit integrates SHAP (SHapley Additive exPlanations), LIME (Local Interpretable Model-agnostic Explanations), and Fairlearn.
+👉 Databricks Helps: Responsible AI toolkit integrates SHAP, LIME, and Fairlearn for explanations at scale.
 
 ---
 
 ## Types of Explainability
-- Global vs. Local explanations  
-- Intrinsic vs. Post-hoc approaches  
+- Global vs. Local  
+- Intrinsic vs. Post-hoc  
 
-Notes:  
-Different contexts require different explainability techniques.
+Some explanations show how the whole model behaves (global), while others explain individual predictions (local). Some models are inherently explainable (intrinsic), while others require post-hoc techniques.
 
-👉 Databricks Helps: MLflow artifacts store both global and local explanation outputs.
+👉 Databricks Helps: MLflow artifacts store both global and local explanations as part of each experiment.
 
 ---
 
@@ -158,104 +142,95 @@ Different contexts require different explainability techniques.
 - PDP (Partial Dependence Plot)  
 - ICE (Individual Conditional Expectation)  
 
-Notes:  
-Standard tools to interpret complex models.
+These techniques allow teams to quantify feature contributions, explore “what if” scenarios, and visualize how input changes affect predictions.
 
-👉 Databricks Helps: Native support for logging SHAP/LIME outputs to MLflow experiment runs.
+👉 Databricks Helps: MLflow can log and visualize SHAP, LIME, PDP, and ICE outputs.
 
 ---
 
 ## Example-based Explanations
-- Counterfactuals: “what if” scenarios  
-- Prototypes: similar examples from training data  
+- Counterfactuals  
+- Prototypes  
 
-Notes:  
-Useful for customer-facing explainability in finance and healthcare.
+Counterfactuals answer questions like “What if this customer earned $5,000 more — would they still be denied a loan?” Prototypes show similar past cases, grounding predictions in real-world examples.
 
-👉 Databricks Helps: Integrates with libraries like Alibi Explain with results stored in MLflow.
+👉 Databricks Helps: Supports third-party libraries (e.g., Alibi Explain) with results stored in MLflow.
 
 ---
 
 ## Fairness & Bias
-- Bias sources: sampling, proxy, label bias  
-- Fairness metrics: Demographic Parity, Equal Opportunity, Disparate Impact  
+- Bias sources  
+- Fairness metrics  
 
-Notes:  
-Bias and fairness are core explainability challenges.
+Bias can creep into models through data sampling, proxy variables, or skewed labels. Fairness metrics such as Demographic Parity, Equal Opportunity, and Disparate Impact provide measurable ways to detect it.
 
-👉 Databricks Helps: Responsible AI toolkit + Fairlearn integration for fairness metric calculation.
+👉 Databricks Helps: Responsible AI toolkit + Fairlearn integration calculate fairness metrics within Databricks.
 
 ---
 
-## Mitigation Approaches
-- Pre-processing (rebalance data)  
-- In-processing (fairness constraints)  
-- Post-processing (prediction adjustment)  
+## Bias Mitigation Approaches
+- Pre-processing  
+- In-processing  
+- Post-processing  
 
-Notes:  
-Bias can be mitigated before, during, or after training.
+Bias can be tackled before training (balancing data), during training (fairness-aware algorithms), or after training (adjusting predictions). A layered approach often works best.
 
-👉 Databricks Helps: PySpark pipelines scale rebalancing, fairness-constrained training, and adjustments.
+👉 Databricks Helps: PySpark pipelines scale data balancing, fairness-constrained training, and post-processing adjustments.
 
 ---
 
 ## Responsible AI Toolkit
-- Bias detection & fairness analysis  
-- Explainability integration (SHAP, LIME)  
-- MLflow artifacts for reproducibility  
+- Bias detection  
+- Explainability tools  
+- Integration with MLflow  
 
-Notes:  
-Databricks simplifies fairness and explainability within the same workflows.
+The Databricks Responsible AI Toolkit offers ready-to-use workflows for bias detection, fairness analysis, and explainability. It integrates seamlessly with MLflow to ensure reproducibility and compliance.
 
-👉 Databricks Helps: Open-source toolkit available directly in Databricks environment.
+👉 Databricks Helps: Available directly in the Databricks Workspace as an open-source package.
 
 ---
 
 ## Explainability + Governance Together
-- Governance = accountability  
-- Explainability = transparency  
-- Combined = Responsible AI  
+- Accountability  
+- Transparency  
+- Responsible AI  
 
-Notes:  
-Both elements reinforce each other to meet compliance and business trust.
+Governance makes AI accountable, and explainability makes it transparent. Together they enable Responsible AI: trustworthy, compliant, and ethical systems that organizations can scale confidently.
 
-👉 Databricks Helps: Unified dashboards combining model metrics, drift, bias, and explanations.
+👉 Databricks Helps: Unified dashboards show performance, fairness, drift, and explanations.
 
 ---
 
 ## Case Study: Credit Risk Model
-- Governance: version tracking, approvals  
-- Explainability: SHAP for customer-level decisions  
-- Fairness: bias mitigation for demographic groups  
+- Governance: versioning and approvals  
+- Explainability: SHAP feature importance  
+- Fairness: demographic bias checks  
 
-Notes:  
-Credit models must satisfy governance, explainability, and fairness.
+Credit models in finance must be strictly governed, explainable to regulators and customers, and monitored for fairness. Without this, banks face compliance violations and reputational risk.
 
-👉 Databricks Helps: End-to-end solution for regulated industries (audit trail + SHAP + bias metrics).
+👉 Databricks Helps: Combines model registry, SHAP logging, and fairness metrics for end-to-end oversight.
 
 ---
 
 ## Case Study: Healthcare Diagnosis
-- Governance: compliance officer approvals  
+- Governance: compliance approvals  
 - Explainability: PDP plots for doctors  
-- Fairness: patient group validation  
+- Fairness: subgroup validation  
 
-Notes:  
-Trustworthy healthcare AI requires transparency and fairness.
+Healthcare requires trust. Doctors need explanations for predictions, and patients need fairness in outcomes. Governance ensures compliance, while explainability builds trust with clinicians.
 
-👉 Databricks Helps: Secure environment with lineage & artifact logging to support medical model audits.
+👉 Databricks Helps: Provides secure lineage, reproducible training, and compliance-ready audit logs.
 
 ---
 
 ## Case Study: Marketing Churn
 - Governance: controlled deployments  
-- Explainability: ICE plots for customer behavior  
-- Bias mitigation: avoid over-targeting demographics  
+- Explainability: ICE plots  
+- Fairness: bias prevention  
 
-Notes:  
-Even in marketing, fairness matters for brand trust.
+Churn models drive campaigns. Without governance and fairness checks, marketing could unfairly target or exclude groups. Explainability ensures business teams understand and trust predictions.
 
-👉 Databricks Helps: Spark + MLflow scale explainability to millions of predictions.
+👉 Databricks Helps: Spark + MLflow allow explainability at massive scale, supporting millions of predictions.
 
 ---
 
@@ -265,22 +240,20 @@ Even in marketing, fairness matters for brand trust.
 - Fairness = ethics  
 - Databricks = enabler  
 
-Notes:  
-Governance, explainability, and fairness are business-critical pillars.
+Responsible AI depends on governance, explainability, and fairness. Databricks provides a unified platform to make these pillars achievable in real enterprise settings.
 
-👉 Databricks Helps: Provides a unified platform for Responsible AI.
+👉 Databricks Helps: One platform for Responsible AI.
 
 ---
 
 ## Future Outlook
 - Automated compliance dashboards  
 - Integrated Responsible AI frameworks  
-- AI that is plannable, predictable, and trusted  
+- Plannable, predictable AI  
 
-Notes:  
-The future is about Responsible AI by design.
+The future of AI is about trust and predictability. Compliance will become automated, fairness checks built-in, and organizations will demand plannable AI strategies.
 
-👉 Databricks Helps: Roadmap integrates fairness, explainability, and governance deeper into Unity Catalog & Monitoring.
+👉 Databricks Helps: Roadmap integrates governance, fairness, and explainability deeper into Unity Catalog and Monitoring.
 
 ---
 
@@ -290,7 +263,7 @@ The future is about Responsible AI by design.
 - DAB – Databricks Asset Bundle  
 - PDP – Partial Dependence Plot  
 
-👉 Databricks Helps: Reduces need to stitch multiple tools.
+👉 Databricks Helps: Simplifies versioning, permissions, and deployment automation.
 
 ---
 
@@ -300,7 +273,7 @@ The future is about Responsible AI by design.
 - LIME – Local Interpretable Model-agnostic Explanations  
 - AIF360 – AI Fairness 360 Toolkit  
 
-👉 Databricks Helps: Integrates SHAP, LIME, and AIF360 in Responsible AI toolkit.
+👉 Databricks Helps: Integrates SHAP, LIME, and AIF360 with MLflow.
 
 ---
 
@@ -309,4 +282,4 @@ The future is about Responsible AI by design.
 - GDPR – General Data Protection Regulation  
 - EU AI Act – European Union Artificial Intelligence Act  
 
-👉 Databricks Helps: Governance aligns with MAS, GDPR, and EU AI Act compliance.
+👉 Databricks Helps: Aligns governance with MAS, GDPR, and EU AI Act compliance.
