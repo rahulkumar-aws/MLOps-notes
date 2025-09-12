@@ -1,3 +1,9 @@
+---
+marp: true
+theme: default
+paginate: true
+---
+
 # Model Governance & Explainability
 ### Ensuring Trust, Compliance, and Responsible AI with Databricks
 
@@ -25,6 +31,11 @@ Model governance ensures models can be trusted in business-critical settings. Ex
 2. Model Version Management  
 3. Plannable AI  
 4. Explainable AI (XAI)  
+   - Why Explainability  
+   - Types of Explainability  
+   - Categories of XAI methods  
+   - Techniques (SHAP, LIME, PDP, ICE)  
+   - Example-based Explanations  
 5. Fairness & Bias Mitigation  
 6. Databricks in Action  
 7. Case Studies & Conclusion  
@@ -126,42 +137,70 @@ Plannable AI means building AI systems that are predictable, auditable, and alig
 
 ---
 
+## Why Explainability?
+
+- Builds trust with end users  
+- Required by regulations like GDPR and EU AI Act  
+- Helps debug and improve models  
+- Enables fairness validation  
+
+Explainability ensures AI is not a black box. It allows users, regulators, and developers to understand and trust predictions.
+
+👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/microsoft/responsible-ai-toolbox) integrates SHAP, LIME, PDP, ICE into MLflow workflows.
+
+---
+
+## Types of Explainability
+
+### 1. Global Explanations
+- **Definition:** Show how the model behaves overall.  
+- **Example:** A PDP shows that “higher income increases loan approval probability.”  
+- **Use case:** Business stakeholders.  
+
+### 2. Local Explanations
+- **Definition:** Explain a single prediction.  
+- **Example:** SHAP shows that “high debt lowered approval by -0.2, stable job added +0.1.”  
+- **Use case:** Regulators, customer support.  
+
+### 3. Intrinsic Explanations
+- **Definition:** Models that are interpretable by design.  
+- **Examples:** Decision trees, linear regression.  
+- **Benefit:** Easy to explain, but may trade off accuracy.  
+
+### 4. Post-hoc Explanations
+- **Definition:** Explanations applied after training complex models.  
+- **Techniques:** SHAP, LIME, PDP, ICE.  
+- **Example:** Explaining why a neural net flagged fraud.  
+
+👉 Databricks Helps: MLflow logs both global (PDP, feature importance) and local (SHAP, LIME) explanations.
+
+---
+
 ## Explainable AI (XAI)
 
 **Definition:**  
-XAI (Explainable AI) refers to methods and processes that make machine learning models transparent, interpretable, and understandable by humans.  
+XAI (Explainable AI) refers to methods and processes that make ML models transparent, interpretable, and understandable.  
 
 **Why XAI matters:**  
-- Builds **trust** by showing why models make decisions.  
-- Supports **compliance** with regulations like GDPR and EU AI Act.  
-- Improves **debugging** by revealing model weaknesses.  
-- Enables **fairness checks** by showing differential impacts.  
+- Builds **trust**  
+- Supports **compliance**  
+- Improves **debugging**  
+- Enables **fairness checks**  
 
-👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/microsoft/responsible-ai-toolbox) integrates SHAP, LIME, PDP, ICE, and fairness libraries into MLflow workflows for enterprise-scale transparency.
+👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) integrates SHAP, LIME, PDP, ICE, and fairness libraries into MLflow workflows.
 
 ---
 
 ## Categories of XAI Methods
 
-- **Intrinsically interpretable models**  
-  Can be understood directly (e.g., decision trees, linear regression).  
+- **Intrinsically interpretable models** – simple models understood directly (decision trees, linear regression).  
+- **Model-agnostic methods** – work on any model post-training (SHAP, LIME).  
+- **Causal models** – capture *causes* not just correlations.  
+- **Counterfactual explanations** – show what changes would alter a prediction.  
+- **Adversarial examples** – reveal unintuitive or fragile predictions.  
+- **Non-agnostic methods** – specific to certain models (e.g., gradient-based for neural nets).  
 
-- **Model-agnostic methods**  
-  Work on any model after training (e.g., SHAP, LIME).  
-
-- **Causal models**  
-  Capture the *true causes* of events, not just correlations.  
-
-- **Counterfactual explanations**  
-  Show what changes would alter a prediction.  
-
-- **Adversarial examples**  
-  Identify small changes that cause unintuitive predictions.  
-
-- **Non-agnostic methods**  
-  Work only for specific model classes (e.g., neural net gradients).  
-
-👉 Databricks Helps: Supports model-agnostic explainers like SHAP/LIME and integrates counterfactual analysis libraries, logging results in MLflow.
+👉 Databricks Helps: Supports SHAP, LIME, and counterfactual analysis libraries with MLflow logging.
 
 ---
 
@@ -199,7 +238,7 @@ These provide intuitive, user-friendly explanations of model predictions.
 
 Bias can appear at data, feature, or label levels. Fairness metrics help detect inequities.  
 
-👉 Databricks Helps: Supports [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://github.com/Trusted-AI/AIF360) inside Databricks.
+👉 Databricks Helps: Supports [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://aif360.mybluemix.net/) inside Databricks.
 
 ---
 
