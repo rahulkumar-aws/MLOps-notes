@@ -199,7 +199,7 @@ These provide intuitive, user-friendly explanations of model predictions.
 
 Bias can appear at data, feature, or label levels. Fairness metrics help detect inequities.  
 
-👉 Databricks Helps: Supports [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://aif360.mybluemix.net/) inside Databricks.
+👉 Databricks Helps: Supports [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://github.com/Trusted-AI/AIF360) inside Databricks.
 
 ---
 
