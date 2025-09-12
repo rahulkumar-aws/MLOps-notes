@@ -149,12 +149,12 @@ Explainability ensures AI is not a black box. It allows users, regulators, and d
 
 ### 1. Global Explanations
 - **Definition:** Show how the model behaves overall.  
-- **Example:** A PDP shows that “higher income increases loan approval probability.”  
+- **Example:** A PDP (Partial Dependence Plot) shows that “higher income increases loan approval probability.”  
 - **Use case:** Business stakeholders.  
 
 ### 2. Local Explanations
 - **Definition:** Explain a single prediction.  
-- **Example:** SHAP shows that “high debt lowered approval by -0.2, stable job added +0.1.”  
+- **Example:** SHAP (SHapley Additive exPlanations ) shows that “high debt lowered approval by -0.2, stable job added +0.1.”  
 - **Use case:** Regulators, customer support.  
 
 ### 3. Intrinsic Explanations
