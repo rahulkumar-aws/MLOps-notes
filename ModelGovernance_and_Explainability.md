@@ -137,7 +137,7 @@ XAI (Explainable AI) refers to methods and processes that make machine learning 
 - Improves **debugging** by revealing model weaknesses.  
 - Enables **fairness checks** by showing differential impacts.  
 
-👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) integrates SHAP, LIME, PDP, ICE, and fairness libraries into MLflow workflows for enterprise-scale transparency.
+👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/microsoft/responsible-ai-toolbox) integrates SHAP, LIME, PDP, ICE, and fairness libraries into MLflow workflows for enterprise-scale transparency.
 
 ---
 
