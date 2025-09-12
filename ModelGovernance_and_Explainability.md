@@ -4,7 +4,7 @@
 AI adoption requires more than accuracy.  
 Organizations need governance frameworks, explainability techniques, and fairness safeguards to ensure models are reliable, compliant, and trusted. Databricks provides the platform to make this possible.
 
-👉 Databricks Helps: Unified Lakehouse platform combining [governance](https://docs.databricks.com/en/data-governance/unity-catalog/index.html), [versioning](https://docs.databricks.com/en/mlflow/model-registry.html), [explainability](https://github.com/databricks/responsible-ai-toolbox), and [monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html).
+👉 Databricks Helps: Unified Lakehouse platform combining [governance](https://docs.databricks.com/en/data-governance/unity-catalog/index.html), [versioning](https://docs.databricks.com/en/mlflow/model-registry.html), [explainability](http://github.com/microsoft/responsible-ai-toolbox), and [monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html).
 
 ---
 
