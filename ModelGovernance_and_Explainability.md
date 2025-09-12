@@ -4,7 +4,7 @@
 AI adoption requires more than accuracy.  
 Organizations need governance frameworks, explainability techniques, and fairness safeguards to ensure models are reliable, compliant, and trusted. Databricks provides the platform to make this possible.
 
-👉 Databricks Helps: Unified Lakehouse platform combining [governance](https://docs.databricks.com/en/data-governance/unity-catalog/index.html), [versioning](https://docs.databricks.com/en/mlflow/model-registry.html), [explainability](http://github.com/microsoft/responsible-ai-toolbox), and [monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html).
+👉 Databricks Helps: Unified Lakehouse platform combining [governance](https://docs.databricks.com/en/data-governance/unity-catalog/index.html), [versioning](https://docs.databricks.com/en/mlflow/model-registry.html), [explainability](https://github.com/databricks/responsible-ai-toolbox), and [monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html).
 
 ---
 
@@ -24,7 +24,7 @@ Model governance ensures models can be trusted in business-critical settings. Ex
 1. Model Governance  
 2. Model Version Management  
 3. Plannable AI  
-4. Model Explainability  
+4. Explainable AI (XAI)  
 5. Fairness & Bias Mitigation  
 6. Databricks in Action  
 7. Case Studies & Conclusion  
@@ -103,78 +103,93 @@ Governance continues after deployment. Monitoring ensures models remain fair and
 ---
 
 ## Plannable AI
-- Predictable  
-- Reliable  
-- Aligned with business  
 
 **Definition:**  
 Plannable AI means building AI systems that are predictable, auditable, and aligned with organizational planning cycles — not ad-hoc experiments that can’t be trusted or repeated.  
 
 **Why it matters:**  
-- Business leaders need **forecastable impact**: knowing how models will influence KPIs before deployment.  
-- Risk officers demand **auditability**: every decision can be traced back to data and code.  
-- Operations teams want **reliability**: models behave consistently across dev, staging, and production.  
+- **Forecastable impact**: Leaders know how models affect KPIs before deployment.  
+- **Auditability**: Every decision is traceable to data and code.  
+- **Reliability**: Models behave consistently across dev, staging, and production.  
 
-**Key Practices:**  
+**Best Practices:**  
 - Version control across code, data, and models.  
-- Approval gates tied to business processes (e.g., quarterly review cycles).  
-- Integrated monitoring to detect drift early and trigger retraining.  
+- Approval gates tied to business review cycles.  
+- Integrated monitoring to detect drift and retrain proactively.  
 
 **Examples:**  
-- A retailer can forecast sales uplift from a recommender model *before* deployment.  
-- A bank can predict how a credit model update will affect approval rates and capital reserves.  
-- An insurer can model expected claim outcomes with explainability before policies go live.  
+- Retailer forecasts sales uplift from a recommender before rollout.  
+- Bank predicts how a credit model update impacts approval rates.  
+- Insurer estimates claim risks and prices policies transparently.  
 
-👉 Databricks Helps: [Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html) ensure reproducibility, [MLflow Registry](https://docs.databricks.com/en/mlflow/model-registry.html) provides version tracking, and [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html) enables proactive governance — making AI plannable, not accidental.
-
----
-
-## Why Explainability?
-- Builds trust with users  
-- Required by regulations like GDPR  
-- Helps debug and improve models  
-
-Explainability ensures AI is not a black box. It allows users, regulators, and developers to understand and trust predictions.
-
-👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) integrates SHAP, LIME, and fairness libraries.
+👉 Databricks Helps: [Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html) ensure reproducibility, [MLflow Registry](https://docs.databricks.com/en/mlflow/model-registry.html) tracks versions, and [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html) enables proactive governance.
 
 ---
 
-## Types of Explainability
-- **Global**: Model-level insights  
-- **Local**: Prediction-level explanations  
-- **Intrinsic**: Naturally interpretable models  
-- **Post-hoc**: Applied after training  
+## Explainable AI (XAI)
 
-👉 Databricks Helps: MLflow stores global explanations (feature importance, PDP) and local explanations (SHAP, LIME) as artifacts.
+**Definition:**  
+XAI (Explainable AI) refers to methods and processes that make machine learning models transparent, interpretable, and understandable by humans.  
+
+**Why XAI matters:**  
+- Builds **trust** by showing why models make decisions.  
+- Supports **compliance** with regulations like GDPR and EU AI Act.  
+- Improves **debugging** by revealing model weaknesses.  
+- Enables **fairness checks** by showing differential impacts.  
+
+👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) integrates SHAP, LIME, PDP, ICE, and fairness libraries into MLflow workflows for enterprise-scale transparency.
+
+---
+
+## Categories of XAI Methods
+
+- **Intrinsically interpretable models**  
+  Can be understood directly (e.g., decision trees, linear regression).  
+
+- **Model-agnostic methods**  
+  Work on any model after training (e.g., SHAP, LIME).  
+
+- **Causal models**  
+  Capture the *true causes* of events, not just correlations.  
+
+- **Counterfactual explanations**  
+  Show what changes would alter a prediction.  
+
+- **Adversarial examples**  
+  Identify small changes that cause unintuitive predictions.  
+
+- **Non-agnostic methods**  
+  Work only for specific model classes (e.g., neural net gradients).  
+
+👉 Databricks Helps: Supports model-agnostic explainers like SHAP/LIME and integrates counterfactual analysis libraries, logging results in MLflow.
 
 ---
 
 ## Explainability Techniques
 
-- [**SHAP (SHapley Additive exPlanations)**](https://shap.readthedocs.io/en/latest/) — assigns contribution scores per feature to explain predictions.  
-  *Notes:* Based on game theory. Explains both global and individual predictions. Example: In a loan model, income may contribute +0.3 while debt contributes -0.2 to approval probability.  
+- [**SHAP (SHapley Additive exPlanations)**](https://shap.readthedocs.io/en/latest/) — feature contribution scores.  
+  *Notes:* Based on game theory. Explains both global and local predictions. Example: Income adds +0.3 while debt subtracts -0.2 in loan approval.  
 
-- [**LIME (Local Interpretable Model-agnostic Explanations)**](https://github.com/marcotcr/lime) — builds local surrogate models.  
-  *Notes:* Perturbs input features to explain one prediction at a time. Example: In a churn model, shows that contract length and monthly charges explain most of the churn risk.  
+- [**LIME (Local Interpretable Model-agnostic Explanations)**](https://github.com/marcotcr/lime) — local surrogate models.  
+  *Notes:* Perturbs input features to explain one prediction. Example: Churn driven by contract length and charges.  
 
-- [**PDP (Partial Dependence Plot)**](https://christophm.github.io/interpretable-ml-book/pdp.html) — shows average feature effects.  
-  *Notes:* Explains overall feature influence. Example: House price increases steadily with more rooms until it plateaus.  
+- [**PDP (Partial Dependence Plot)**](https://christophm.github.io/interpretable-ml-book/pdp.html) — average feature effects.  
+  *Notes:* Shows overall influence. Example: House price rises with more rooms until saturation.  
 
-- [**ICE (Individual Conditional Expectation)**](https://christophm.github.io/interpretable-ml-book/ice.html) — shows feature effects for individuals.  
-  *Notes:* Goes beyond averages. Example: For some patients, age increases risk sharply; for others, only slightly. Useful for subgroup analysis and bias detection.  
+- [**ICE (Individual Conditional Expectation)**](https://christophm.github.io/interpretable-ml-book/ice.html) — feature effect for individuals.  
+  *Notes:* Shows heterogeneity. Example: Age raises health risk sharply for some, slightly for others.  
 
-👉 Databricks Helps: [Scaling SHAP with PySpark](https://www.databricks.com/blog/scaling-shap-calculations-with-pyspark-and-pandas-udf) shows enterprise-scale explainability.
+👉 Databricks Helps: [Scaling SHAP with PySpark](https://www.databricks.com/blog/scaling-shap-calculations-with-pyspark-and-pandas-udf) enables large-scale explainability.
 
 ---
 
 ## Example-based Explanations
-- Counterfactuals (“What if income was higher?”)  
-- Prototypes (find similar historical cases)  
+- Counterfactuals: “What if income was higher?”  
+- Prototypes: Show similar cases from training data  
 
-These provide intuitive examples to explain predictions. Counterfactuals simulate alternative scenarios, while prototypes show similar examples from the training set.
+These provide intuitive, user-friendly explanations of model predictions.  
 
-👉 Databricks Helps: Supports [Alibi Explain](https://docs.seldon.io/projects/alibi/en/stable/) with outputs stored in MLflow.
+👉 Databricks Helps: Integrates [Alibi Explain](https://docs.seldon.io/projects/alibi/en/stable/) with MLflow to store counterfactual and prototype outputs.
 
 ---
 
@@ -182,29 +197,29 @@ These provide intuitive examples to explain predictions. Counterfactuals simulat
 - Bias sources: sampling, proxy, label bias  
 - Fairness metrics: Demographic Parity, Equal Opportunity, Disparate Impact  
 
-Bias can appear in data, features, or labels. Fairness metrics quantify disparities to identify risks.
+Bias can appear at data, feature, or label levels. Fairness metrics help detect inequities.  
 
-👉 Databricks Helps: Integrates [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://aif360.mybluemix.net/).
+👉 Databricks Helps: Supports [Fairlearn](https://fairlearn.org/) and [AI Fairness 360](https://aif360.mybluemix.net/) inside Databricks.
 
 ---
 
 ## Bias Mitigation Approaches
-- Pre-processing: rebalance datasets  
+- Pre-processing: balance datasets  
 - In-processing: fairness-aware training  
 - Post-processing: adjust predictions  
 
-Bias can be mitigated at multiple points in the lifecycle.
+Bias mitigation can be applied at any stage, often in combination.  
 
-👉 Databricks Helps: PySpark pipelines scale fairness mitigation across massive datasets.
+👉 Databricks Helps: PySpark pipelines scale mitigation techniques across enterprise datasets.
 
 ---
 
 ## Responsible AI Toolkit
-- Bias detection and fairness analysis  
-- Explainability (SHAP, LIME, PDP)  
-- Integrated with MLflow  
+- Bias detection and fairness metrics  
+- Explainability tools (SHAP, LIME, PDP, ICE)  
+- MLflow integration for reproducibility  
 
-👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) is open-source and runs natively in Databricks.
+👉 Databricks Helps: [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) is open-source and runs directly in Databricks.
 
 ---
 
@@ -213,9 +228,7 @@ Bias can be mitigated at multiple points in the lifecycle.
 - Explainability = transparency  
 - Combined = Responsible AI  
 
-Together, they form the foundation of trustworthy, compliant AI systems.
-
-👉 Databricks Helps: Unified dashboards combine performance metrics, fairness reports, drift, and SHAP/LIME plots.
+👉 Databricks Helps: Unified dashboards integrate performance, fairness, drift, and explanation plots.
 
 ---
 
@@ -225,136 +238,66 @@ Together, they form the foundation of trustworthy, compliant AI systems.
 
 ## Case Study: Credit Risk Model
 
-**Problem:**  
-A bank needs to automate loan approvals. Regulators demand transparency, while customers expect fair and unbiased decisions.  
+**Problem:** Automating loan approvals with regulatory transparency.  
 
-**Governance:**  
-- All model versions must be registered and approved before deployment.  
-- Full audit trail required for compliance audits.  
+**Governance:** Versions tracked, approvals required, audit trails logged.  
+**Explainability:** SHAP explains loan decisions; feature importance ranks drivers.  
+**Fairness:** Bias tests ensure equal opportunity.  
 
-**Explainability:**  
-- SHAP values explain why each applicant is approved or denied.  
-- Feature importance shows income, credit history, and debt ratio as top drivers.  
-
-**Fairness:**  
-- Bias testing ensures no group is systematically disadvantaged.  
-- Equal opportunity and disparate impact metrics are monitored continuously.  
-
-**Databricks Helps:**  
-- [Model Registry](https://docs.databricks.com/en/mlflow/model-registry.html) tracks versions and approvals.  
-- [SHAP explainability](https://www.databricks.com/blog/scaling-shap-calculations-with-pyspark-and-pandas-udf) integrated into MLflow.  
-- [Fairlearn](https://fairlearn.org/) runs in Databricks for fairness testing.  
-
-**Outcome:**  
-Regulators receive clear audit reports, customers see transparent reasons for decisions, and the bank reduces compliance risk.  
+👉 Databricks Helps: [Model Registry](https://docs.databricks.com/en/mlflow/model-registry.html), SHAP in MLflow, [Fairlearn](https://fairlearn.org/).  
+**Outcome:** Regulators see audit logs, customers get transparent explanations, compliance risk reduced.  
 
 ---
 
 ## Case Study: Healthcare Diagnosis Model
 
-**Problem:**  
-A hospital wants to deploy an AI model to support early disease diagnosis. Doctors need interpretable insights, and patients must be treated fairly.  
+**Problem:** Supporting doctors with AI-driven early diagnosis.  
 
-**Governance:**  
-- Strict approval workflows with compliance officers.  
-- Version tracking to ensure reproducibility in audits.  
+**Governance:** Compliance approvals, versioning for audits.  
+**Explainability:** PDP and ICE plots explain risk factors.  
+**Fairness:** Validated across demographic subgroups.  
 
-**Explainability:**  
-- PDP plots show how lab values affect risk predictions.  
-- ICE plots reveal how predictions differ across patients.  
-
-**Fairness:**  
-- Validation across demographic subgroups (age, gender, ethnicity).  
-- Bias detection ensures no patient group is underdiagnosed.  
-
-**Databricks Helps:**  
-- [Unity Catalog](https://docs.databricks.com/en/data-governance/unity-catalog/index.html) secures lineage and access.  
-- [MLflow artifacts](https://docs.databricks.com/en/mlflow/index.html) store explanation outputs.  
-- [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) supports fairness analysis.  
-
-**Outcome:**  
-Doctors trust AI support because predictions are transparent, and audits confirm compliance with healthcare regulations.  
+👉 Databricks Helps: [Unity Catalog](https://docs.databricks.com/en/data-governance/unity-catalog/index.html), [MLflow artifacts](https://docs.databricks.com/en/mlflow/index.html), Responsible AI Toolkit.  
+**Outcome:** Doctors trust AI insights, regulators accept transparent logs.  
 
 ---
 
 ## Case Study: Marketing Churn Model
 
-**Problem:**  
-A telecom provider needs to predict customer churn. Business users want actionable insights, while ensuring campaigns don’t unfairly target groups.  
+**Problem:** Predicting churn while ensuring fairness in campaigns.  
 
-**Governance:**  
-- Controlled deployments with rollbacks.  
-- Regular monitoring to detect data drift.  
+**Governance:** Controlled deployments, drift monitoring.  
+**Explainability:** ICE + LIME explain churn drivers.  
+**Fairness:** Demographic parity tests prevent biased targeting.  
 
-**Explainability:**  
-- ICE plots explain churn risk for individuals.  
-- LIME shows which features (contract length, billing frequency) drive churn.  
-
-**Fairness:**  
-- Demographic parity ensures campaigns don’t exclude or over-target groups.  
-- Post-processing adjustments mitigate unfair bias.  
-
-**Databricks Helps:**  
-- [Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html) enable reproducible deployments.  
-- [MLflow](https://docs.databricks.com/en/mlflow/index.html) logs LIME/ICE outputs.  
-- [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html) detects drift.  
-
-**Outcome:**  
-Business teams gain confidence in churn predictions, customers see fairer campaigns, and retention improves without reputational risk.  
+👉 Databricks Helps: [Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html), [MLflow](https://docs.databricks.com/en/mlflow/index.html), [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html).  
+**Outcome:** Marketing gains trust in predictions, retention improves.  
 
 ---
 
 ## Case Study: Insurance Underwriting
 
-**Problem:**  
-An insurance company wants to automate underwriting. Regulators require transparency in pricing, and customers demand fairness across demographics.  
+**Problem:** Automating underwriting with fair pricing.  
 
-**Governance:**  
-- Models must be reviewed and approved before deployment.  
-- All versions logged for traceability in case of disputes.  
+**Governance:** Models reviewed and versioned for disputes.  
+**Explainability:** SHAP + LIME explain premiums; global drivers checked.  
+**Fairness:** Tests for unfair pricing by gender/ethnicity.  
 
-**Explainability:**  
-- SHAP explains how age, driving history, and health records influence premiums.  
-- Feature importance validates alignment with actuarial guidelines.  
-
-**Fairness:**  
-- Bias testing ensures no unfair pricing by gender or ethnicity.  
-- Equalized odds monitored to meet regulatory thresholds.  
-
-**Databricks Helps:**  
-- [Model Registry](https://docs.databricks.com/en/mlflow/model-registry.html) tracks versions.  
-- SHAP + LIME explanations stored in [MLflow experiments](https://docs.databricks.com/en/mlflow/index.html).  
-- [Responsible AI Toolkit](https://github.com/databricks/responsible-ai-toolbox) checks fairness.  
-
-**Outcome:**  
-Underwriting becomes faster and more consistent. Customers receive transparent justifications, and regulators accept audit logs as proof of compliance.  
+👉 Databricks Helps: Model Registry, MLflow experiments, Responsible AI Toolkit.  
+**Outcome:** Faster, fairer underwriting with transparent justifications accepted by regulators.  
 
 ---
 
 ## Case Study: Enterprise Risk Assessment
 
-**Problem:**  
-A global firm needs to assess enterprise risks (market, operational, cyber). Executives want forecasts for planning, and regulators require explainable models.  
+**Problem:** Forecasting enterprise-wide risks for resilience.  
 
-**Governance:**  
-- Multiple risk models combined into a central registry.  
-- Continuous monitoring ensures up-to-date forecasts.  
+**Governance:** Central risk registry, continuous monitoring.  
+**Explainability:** PDP explains macroeconomic effects; SHAP highlights key factors.  
+**Fairness:** Scenario + counterfactual analysis for fairness across regions.  
 
-**Explainability:**  
-- PDP plots show how macroeconomic indicators affect risk.  
-- SHAP highlights key drivers like currency volatility or supply chain delays.  
-
-**Fairness:**  
-- Scenario analysis ensures no unit or region is unfairly penalized.  
-- Counterfactuals simulate alternative scenarios for resilience planning.  
-
-**Databricks Helps:**  
-- [Unity Catalog](https://docs.databricks.com/en/data-governance/unity-catalog/data-lineage.html) provides lineage.  
-- [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html) detects anomalies.  
-- [Asset Bundles](https://docs.databricks.com/en/dev-tools/bundles/index.html) orchestrate deployments.  
-
-**Outcome:**  
-Executives gain confidence in forecasts, regulators trust transparency, and the company strengthens resilience by simulating risks.  
+👉 Databricks Helps: [Unity Catalog](https://docs.databricks.com/en/data-governance/unity-catalog/data-lineage.html), [Lakehouse Monitoring](https://docs.databricks.com/en/lakehouse-monitoring/index.html), Asset Bundles.  
+**Outcome:** Executives plan confidently, regulators trust transparency, resilience improves.  
 
 ---
 
@@ -402,4 +345,4 @@ Executives gain confidence in forecasts, regulators trust transparency, and the 
 - GDPR – General Data Protection Regulation  
 - EU AI Act – European Union Artificial Intelligence Act  
 
-👉 Databricks Helps: Aligns governance with MAS, GDPR, and EU AI Act compliance requirements.
+👉 Databricks Helps: Aligns governance with MAS, GDPR, and EU AI Act compliance.
