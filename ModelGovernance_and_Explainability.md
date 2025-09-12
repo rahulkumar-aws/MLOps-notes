@@ -1,8 +1,3 @@
----
-marp: true
-theme: default
-paginate: true
----
 
 # Model Governance & Explainability
 ### Ensuring Trust, Compliance, and Responsible AI with Databricks
